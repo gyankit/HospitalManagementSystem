@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}  
+{% block cssContent %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/dataTables.bootstrap4.min.css') }}">
+{% endblock cssContent %}
+{% block mainContent %}
+<div class="card col-12 my-3">
+    <div class="card-header text-center bg-dark">
+        <div class="card-title">
+            <h2 class="font-monospace font-weight-bold text-info">All Medicine's Details</h2>
+        </div>
+    </div>
+    <div class="card-body alert-info">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped" id="statustable">
+                <thead class="bg-danger text-white">
+                    <tr>
+                        <th scope="col">Test Id</th>
+                        <th scope="col">Test Name</th> 
+                        <th scope="col">Rate</th>
+                        <th scope="col">Update Test Details</th>
+                        <th scope="col">Remove Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tests %}   
+                    <tr>
+                        <td scope="row">{{ t.testId }}</td>
+                        <td>{{ t.testName }}</td>
+                        <td>{{ t.rate }}</td>
+                        <td><a href="{{ url_for('diagnostic.testupdate', test=t.testName) }}" class="btn btn-primary text-white">Update</a></td>
+                        <td><a href="{{ url_for('diagnostic.testdelete', test=t.testName) }}" class="btn btn-danger text-white">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %}
+{% block jsContent %}
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $("#statustable").DataTable({
+            "info": true,
+            "order": [0 ,'asc']
+        });
+    </script>
+{% endblock jsContent %}

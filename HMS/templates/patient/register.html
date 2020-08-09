@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% from "includes/_form.html" import form_input_field_inline %}
+{% from "includes/_form.html" import form_select_field_inline %}
+{% block cssContent %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock cssContent %}
+{% block mainContent %}
+<div class="d-flex justify-content-center mt-3">
+    <div class="card col-lg-6 col-md-9 col-12 mb-5">
+        <div class="card-header text-center font-monospace bg-dark">
+            <h2 class="font-weight-bold text-info">Patient Registration</h2>
+        </div>
+        <div class="card-body alert-info">
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }} 
+                {{ form_input_field_inline(form.ssnid) }} 
+                {{ form_input_field_inline(form.patientName) }} 
+                {{ form_input_field_inline(form.age) }}
+                {{ form_input_field_inline(form.dateOfAdmission) }}
+                {{ form_select_field_inline(form.roomType) }}
+                {{ form_input_field_inline(form.patientaddress) }}
+                {{ form_select_field_inline(form.state) }}
+                {{ form_select_field_inline(form.city ) }}
+                <div class="d-flex justify-content-lg-around mt-5">
+                    {{ form.submit(class="btn px-5 rounded-0 btn-info text-light text-uppercase font-monospace font-weight-bold mb-3") }}
+                    <button type="reset" class="btn px-5 rounded-0 btn-secondary text-light text-uppercase font-monospace font-weight-bold mb-3" value="Reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %} 
+{% block jsContent %}
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/city.js') }}"></script>
+    <script>
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+        $("#dateOfAdmission").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss', 
+            startDate: "2020-01-01 00:00:00",
+            endDate: "{{ cdate }}",
+        });
+    </script>
+{% endblock jsContent %}

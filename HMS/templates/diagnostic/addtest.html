@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% from 'includes/_form.html' import form_input_field_inline %}
+{% block mainContent %}
+<div class="d-flex justify-content-center my-5">
+    <div class="card col-lg-6 col-md-9 col-12 px-3 py-4">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form_input_field_inline(form.testName) }}
+            {{ form_input_field_inline(form.rate) }}
+            <div class="d-flex justify-content-center">
+                {{ form.submit(class="btn px-5 rounded-0 btn-info text-light text-uppercase font-monospace font-weight-bold") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock mainContent %}

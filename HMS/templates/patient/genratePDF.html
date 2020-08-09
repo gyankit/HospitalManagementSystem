@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/bootstrap.min.css') }}">
+</head>
+<body>
+</body>
+    <script src="{{ url_for('static', filename='plugins/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript">
+        var data = {{data|tojson}}
+        document.body.innerHTML = data.formData;
+        window.onafterprint = function(event) {
+            alert('Invoice generated. Patient Dischraged.');
+            window.location.href = "/patientDischarge?next="+data.next+"&pid="+data.pid+"&dod="+data.dod+"&key="+data.key;
+        };
+        window.print();
+    </script>
+</html>

@@ -1,0 +1,56 @@
+<header class="font-monospace">
+    <nav class="navbar navbar-expand-md navbar-dark bg-info">
+        <div class="container-fluid px-5">
+            <a class="navbar-brand" href="{{ url_for('main.home') }}"><img src="{{ url_for('static', filename='namaste-hospitals-horizontal.png') }}" class="img" alt="Logo" height="50px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto mb-2 mb-md-0 text-uppercase font-weight-bold">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link text-white" href="{{ url_for('main.home') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">Patient</a>
+                        <ul class="dropdown-menu bg-info border-0 rounded-0 shadow-none py-1 mt-2" aria-labelledby="dropdown01" style="width: 200px;">
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.register') }}">New Registration</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.details') }}">Single Record</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.update') }}">Update Record</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.delete') }}">Delete Record</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.billing') }}">Billing Details</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('patient.status') }}">All Records</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown02" data-toggle="dropdown" aria-expanded="false">Treatment</a>
+                        <ul class="dropdown-menu bg-info border-0 rounded-0 shadow-none py-1 mt-2" aria-labelledby="dropdown02" style="width: 200px;">
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('pharmacist.details') }}">Pharmacist</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('diagnostic.details') }}">Diagnostic</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown03" data-toggle="dropdown" aria-expanded="false">Store</a>
+                        <ul class="dropdown-menu bg-info border-0 rounded-0 shadow-none py-1 mt-2" aria-labelledby="dropdown03" style="width: 200px;">
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('pharmacist.medicine') }}">Add Medicines</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('pharmacist.allmedicines') }}">Available Medicines</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('diagnostic.addtest') }}">Add Diagnostic</a></li>
+                            <li class="dropdown-divider my-0"></li>
+                            <li><a class="dropdown-item py-2 text-warning font-weight-bold" href="{{ url_for('diagnostic.alltests') }}">Available Diagnostics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link text-white" href="{{ url_for('main.logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

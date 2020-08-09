@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block mainContent %}
+<div class="d-flex justify-content-center">
+    <div class="card col-lg-4 col-md-8 col-12 mb-5 mt-3">
+        <div class="card-header text-center bg-dark">
+            <div class="card-title">
+                <h2 class="font-monospace font-weight-bold text-info">Patient Details</h2>
+            </div>
+        </div>
+        <div class="card-body alert-info">
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">SSN Id</p>
+                <p class="col-6 text-right">{{ p.ssnid }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Patient Id</p>
+                <p class="col-6 text-right">{{ p.patientId }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Patient Name</p>
+                <p class="col-6 text-right">{{ p.name }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Patient Age</p>
+                <p class="col-6 text-right">{{ p.age }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Date of Admission</p>
+                <p class="col-6 text-right">{{ p.dateOfJoining }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Type of Bed</p>
+                <p class="col-6 text-right">{{ p.roomType }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Address</p>
+                <p class="col-6 text-right">{{ p.address }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">State</p>
+                <p class="col-6 text-right">{{ p.state }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">City</p>
+                <p class="col-6 text-right">{{ p.city }}</p>
+            </div>
+            <div class="row">
+                <p class="col-6 text-left font-weight-bold">Status</p>
+                <p class="col-6 text-right">{% if p.status %}<span class="badge bg-primary">Available</span>{% else %}<span class="badge bg-secondary">Discharge</span>{% endif %}</p>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.submit(class="btn rounded-0 bg-danger text-white font-monospace px-5") }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %}

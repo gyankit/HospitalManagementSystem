@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block mainContent %}
+<div class="d-flex justify-content-center mt-5 my-5">
+    <div class="card border-info shadow rounded-circle col-lg-5 col-md-8 col-sm-10 col-12">
+        <div class="card-header bg-info">
+            <p class="card-title font-monospace font-weight-bold h1 text-center my-3 text-white text-uppercase">Search Patient Id</p>
+        </div>
+        <div class="card-body">
+            <form accept="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="mt-3 m-5">
+                {% if form.patientid.errors %} 
+                    {{ form.patientid(class="form-control text-center is-invalid") }}
+                    <ul class="invalid-feedback list-unstyled">
+                    {% for error in form.patientid.errors %}
+                        <li class="text-center">{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                {% else %} 
+                    {{ form.patientid(class="form-control text-center")|safe }}
+                {% endif %} 
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ form.submit(class="btn px-5 rounded-0 btn-info text-light text-uppercase font-monospace font-weight-bold mb-3") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %}

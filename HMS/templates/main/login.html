@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% from 'includes/_form.html' import form_input_field_inline %}
+{% from 'includes/_form.html' import form_check_field %}
+{% block mainContent %}
+    <div class="d-flex justify-content-center mt-5 my-5">
+        <div class="card border-info shadow rounded-0 col-lg-5 col-md-8 col-sm-10 col-12">
+            <div class="card-header bg-info">
+                <p class="card-title text-uppercase font-monospace font-weight-bold h2 text-center my-3 text-white">Hospital Management System</p>
+            </div>
+            <div class="card-body">
+                <form class="form" accept="" method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    {{ form_input_field_inline(form.username) }}
+                    {{ form_input_field_inline(form.password) }}
+                    {{ form_check_field(form.remember) }}
+                    <div class="d-flex justify-content-center">
+                        {{ form.submit(class="btn px-5 rounded-0 btn-info text-light text-uppercase font-monospace font-weight-bold mb-3") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock mainContent %}

@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% from "includes/_form.html" import form_input_field_inline %}
+{% from "includes/_form.html" import form_select_field_inline %}
+{% block cssContent %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/select2-bootstrap4.min.css') }}">
+{% endblock cssContent %}
+{% block mainContent %}
+<div class="d-flex justify-content-center mt-3">
+    <div class="card col-lg-6 col-md-9 col-12 mb-5">
+        <div class="card-header text-center font-monospace bg-dark">
+            <h2 class="font-weight-bold text-info">Update Patient</h2>
+        </div>
+        <div class="card-body alert-info">
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+                {{ form_input_field_inline(form.patientId) }}
+                {{ form_input_field_inline(form.name) }}
+                {{ form_input_field_inline(form.age) }}
+                {{ form_input_field_inline(form.address) }}
+                {{ form_select_field_inline(form.state) }}
+                {{ form_select_field_inline(form.city) }}
+                <div class="d-flex justify-content-center mt-5">
+                    {{ form.submit(class="btn btn-outline-primary rounded-0 bg-dark
+                    text-warning px-5") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %} 
+{% block jsContent %}
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/city.js') }}"></script>
+    <script>
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+    </script>
+{% endblock jsContent %}

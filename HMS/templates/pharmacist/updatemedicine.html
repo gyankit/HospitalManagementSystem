@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% from 'includes/_form.html' import form_input_field_inline %}
+{% block cssContent %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/dataTables.bootstrap4.min.css') }}">
+{% endblock cssContent %}
+{% block mainContent %}
+<div class="d-flex justify-content-center my-5">
+    <div class="card col-lg-6 col-md-9 col-12 px-3 py-4">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form_input_field_inline(form.medicineName) }}
+            {{ form_input_field_inline(form.quantity) }}
+            {{ form_input_field_inline(form.rate) }}
+            <div class="d-flex justify-content-center">
+                {{ form.submit(class="btn px-5 rounded-0 btn-info text-light text-uppercase font-monospace font-weight-bold") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock mainContent %}
+
+{% block jsContent %}
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='plugins/js/dataTables.bootstrap4.min.js') }}"></script>
+   
+    <script>
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+    </script>
+{% endblock jsContent %}

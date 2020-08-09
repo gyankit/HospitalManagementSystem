@@ -1,0 +1,163 @@
+{% extends 'layout.html' %}
+{% block mainContent %}
+    <div class="container mb-5">
+        <div id="printScreen">
+            <div class="card col-12 my-3">
+                <div class="card-header bg-dark">
+                    <div class="card-title text-center font-weight-bold font-monospace pt-2">
+                        <h2 class="text-info">Patient Billing / Discharge</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mb-3">
+                        <h3 class="text-center font-monospace font-weight-bold text-danger text-decoration-underline">Patient Details</h3>
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="alert-info">
+                                <th>Patient Name</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ personal[0] }}</td>
+                                    <td>{{ personal[1] }}</td>
+                                    <td>{{ personal[2] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="alert-info">
+                                <th>Date of Admission</th>
+                                <th>Date of Discharge</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ dates[0] }}</td>
+                                    <td>{{ dates[1] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <h3 class="text-center font-monospace font-weight-bold text-danger text-decoration-underline">Room Rent Details</h3>
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="alert-info">
+                                <th>Hospital Room type</th>
+                                <th>Number of Days in Hospital</th>
+                                <th>Room Rent <small>( per day )</small></th>
+                                <th class="text-danger">Total Room Rent</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ rents[0] }}</td>
+                                    <td>{{ rents[1] }}</td>
+                                    <td>{{ rents[2] }}</td>
+                                    <td class="font-weight-bold">{{ rents[3] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <h3 class="text-center font-monospace font-weight-bold text-danger text-decoration-underline">Medicines Bill Details</h3>
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="alert-info">
+                                <th>Sr. No</th>
+                                <th>Medicine Name</th>
+                                <th>Quantity</th>
+                                <th>Rate <small>( per peice )</small></th>
+                                <th>Amount</th>
+                            </thead>
+                            <tbody>
+                                {% for medicine in medicines %} 
+                                <tr>
+                                    <td>{{ medicine.count }}</td>
+                                    <td>{{ medicine.name }}</td>
+                                    <td>{{ medicine.qty }}</td>
+                                    <td>{{ medicine.rate }}</td>
+                                    <td>{{ medicine.amount }}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td class="text-danger font-weight-bold">Total Amount</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="font-weight-bold">{{ totalamount[0] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <h3 class="text-center font-monospace font-weight-bold text-danger text-decoration-underline">Diagnostics Bill Details</h3>
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="alert-info">
+                                <th>Sr. No</th>
+                                <th>Test Name</th>
+                                <th>Amount</th>
+                            </thead>
+                            <tbody>
+                                {% for test in tests %} 
+                                <tr>
+                                    <td>{{ test.count }}</td>
+                                    <td>{{ test.name }}</td>
+                                    <td>{{ test.rate }}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td class="text-danger font-weight-bold">Total Amount</td>
+                                    <td></td>
+                                    <td class="font-weight-bold">{{ totalamount[1] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card alert-info font-weight-bold py-2 my-3 font-monospace">
+                        <div class="d-flex justify-content-around">
+                            <h3 class="text-danger">Grand Total</h3>
+                            <h3 class="text-danger text-decoration-underline">{{ rents[3]+totalamount[0]+totalamount[1] }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if btn %} 
+        <div class="d-flex justify-content-center my-5">
+            <button class="btn btn-danger rounded-0 text-white font-monospace font-weight-bold px-5" type="button" data-toggle="modal" data-target="#modalConfirm" onclick="addDataToForm();">Discharge Patient &amp; Generate Billing Invoice</button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modelConfirmLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content alert-warning">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title text-dark font-monospace text-uppercase" id="modelConfirmLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-primary">Are your Confirm,</p>
+                    <p class="text-dark">You want to discharge this patient <small class="text-danger">( id : {{ pid }} )</small> and generate billing invoice.</p>
+                    <p class="text-info">If yes... Click on Confirm &amp; Proceed</p>
+                    <p class="text-muted">else... Click on Close to cancel</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mr-auto px-5" data-dismiss="modal">Close</button>
+                    <form action="{{ url_for('patient.genPDF') }}" method="POST">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(class="btn btn-success mr-auto px-5")}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock mainContent %}
+{% block jsContent %}
+    <script>
+        function addDataToForm() {
+            document.getElementById('formData').value = document.getElementById('printScreen').innerHTML
+        }
+    </script>
+{% endblock jsContent %}

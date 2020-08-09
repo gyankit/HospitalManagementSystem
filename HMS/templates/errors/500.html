@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaste Hospital | Internal Server Error | 500</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/css/error.css') }}">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="overlay"></div>
+    <div class="terminal">
+        <h1>Error <span class="errorcode">500</span></h1>
+        <p class="output">Internal Server Error! 
+            site is broken! 
+            Try again again after some time.</p>
+        <p class="output">Please try to Logout <a href="{{ url_for('main.logout') }}">Logout</a> or <a href="{{ url_for('main.home') }}">return to the homepage</a>.</p>
+        <p class="output">Good luck.</p>
+    </div>
+</body>
+</html>
